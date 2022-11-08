@@ -7,7 +7,7 @@ const createFile = async(req, res) => {
     const file = await fs.writeFile(fname, data);
     res.status(200).json({
       response: file,
-      message: "file created succssefully",
+      message: "file created successfully",
     });
   } catch (error) {
     res.status(400).json({
@@ -23,11 +23,11 @@ const readFile1=async(req,res)=>{
   const resp=await fs.readFile(path);
   res.status(200).json({
     response:resp.toString(),
-    message:"succseefully readed"
+    message:"successfully readied"
   })
   } catch (error) {
     res.status(400).json({
-      message:"not readed",
+      message:"not readied",
       response:error
     })
   }
