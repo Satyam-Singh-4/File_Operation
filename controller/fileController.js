@@ -32,7 +32,24 @@ const readFile1=async(req,res)=>{
     })
   }
 }
+//Shifting file from one folder to another folder
+const shiftFile=async(req,res)=>{
+  try {
+    const{source,destination}=req.body;
+     const resp=await fs.rename(source, destination);
+     res.status(200).json({
+      response:resp,
+      message:"successfully shifted"
+     })
+  } catch (error) {
+    res.status(400).json({
+      response:error,
+      message:"unable to shift this file"
+    })
+  }
+}
 module.exports = {
   createFile,
-  readFile1
+  readFile1,
+  shiftFile
 };
