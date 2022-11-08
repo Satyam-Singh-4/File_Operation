@@ -1,5 +1,6 @@
 const fs = require("fs").promises;
 
+//write operation
 const createFile = async (req, res) => {
   try {
     const { fname, data } = req.body;
@@ -16,6 +17,8 @@ const createFile = async (req, res) => {
     });
   }
 };
+
+//read operation
 
 const readFile1 = async (req, res) => {
   try {
