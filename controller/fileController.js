@@ -1,5 +1,8 @@
 const fs = require("fs").promises;
-
+const form = require("form-data");
+const path = require("path");
+const multer = require("multer");
+const { Console } = require("console");
 //write operation
 const createFile = async (req, res) => {
   try {
@@ -22,8 +25,13 @@ const createFile = async (req, res) => {
 
 const readFile1 = async (req, res) => {
   try {
-    const { path } = req.body;
+    const { path } = req.file;
+
+    // const filePath=path
+    // console.log(filePath)
+
     const resp = await fs.readFile(path);
+    // const resp = form.append('solution', fs.readFile("./new_file/solution.txt"));
     res.status(200).json({
       response: resp.toString(),
       message: "successfully readied",
@@ -38,7 +46,8 @@ const readFile1 = async (req, res) => {
 //Shifting file from one folder to another folder
 const shiftFile = async (req, res) => {
   try {
-    const { source, destination } = req.body;
+    const { source} = req.file;
+    const destination='./new_file/abc.txt'
     const resp = await fs.rename(source, destination);
     res.status(200).json({
       response: resp,
